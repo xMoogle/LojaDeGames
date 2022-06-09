@@ -42,6 +42,11 @@ public ResponseEntity<Produto> GetAllId(@PathVariable Long id)
 	 .orElse(ResponseEntity.notFound().build());
 }
 
+@GetMapping("/produto={keyword}")
+public ResponseEntity<List<Produto>> getByTema(@PathVariable String keyword){
+	return ResponseEntity.ok(repository.findAllByPlataformaContainingIgnoreCase(keyword));
+}
+
 @PostMapping
 public ResponseEntity<Produto> jogoo(@Valid @RequestBody Produto produto)
 {
